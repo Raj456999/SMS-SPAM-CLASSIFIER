@@ -5,7 +5,7 @@ from nltk.stem import PorterStemmer
 import streamlit as st
 import pickle
 import string
-nltk.download('punct')
+nltk.download('punkt')
 nltk.download('stopwords')
 ps=PorterStemmer()
 
