@@ -5,7 +5,6 @@ from nltk.stem import PorterStemmer
 import streamlit as st
 import pickle
 import string
-nltk.download('punkt', download_dir='nltk_data')
 nltk.download('stopwords')
 ps=PorterStemmer()
 
@@ -16,23 +15,45 @@ sms_input=st.text_area('Enter the Message here')
 
 #Preprocessing the data
 import string
+# def text_tranform(text):
+#     text=text.lower()
+#     text=nltk.word_tokenize(text)
+#     res=[]
+#     for i in text:
+#         if i.isalnum():
+#             res.append(i)
+#     text=res[:]
+#     res.clear()
+#     for i in text:
+#         if i not in stopwords.words('english') and i not in string.punctuation:
+#             res.append(i)
+#     text=res[:]
+#     res.clear()
+#     for i in text:
+#         res.append(ps.stem(i))
+#     return ' '.join(res)
+import string
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+
+ps = PorterStemmer()
+
 def text_tranform(text):
-    text=text.lower()
-    text=nltk.word_tokenize(text)
-    res=[]
-    for i in text:
-        if i.isalnum():
-            res.append(i)
-    text=res[:]
-    res.clear()
-    for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation:
-            res.append(i)
-    text=res[:]
-    res.clear()
-    for i in text:
-        res.append(ps.stem(i))
-    return ' '.join(res)
+    text = text.lower()
+    
+    # simple tokenization without nltk.word_tokenize
+    words = text.split()
+    
+    # keep only alphanumeric words
+    words = [w for w in words if w.isalnum()]
+    
+    # remove stopwords and punctuation
+    words = [w for w in words if w not in stopwords.words('english') and w not in string.punctuation]
+    
+    # stemming
+    words = [ps.stem(w) for w in words]
+    
+    return ' '.join(words)
 if st.button('Predict'):
     tranformed_sms=text_tranform(sms_input)
 
