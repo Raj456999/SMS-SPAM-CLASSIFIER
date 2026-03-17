@@ -64,7 +64,7 @@ if st.button('Predict'):
     #Prediction by model
     # res=model.predict(vector_input)[0]
     probability=model.predict_proba(vector_input)[0]
-    spam_probabilit=probability[1]
+    spam_probability=probability[1]
     ham_probability=probability[0]
     prediction='Spam' if spam_probability>ham_probability else 'Not Spam'
     confidence=max(spam_probability,ham_probability)*100
