@@ -9,8 +9,8 @@ import string
 nltk.download('stopwords')
 ps=PorterStemmer()
 
-tfidf=pickle.load(open('C:\\Users\\palla\\OneDrive\\Desktop\\Projects\\First\\SMS Spam Classifier\\vectorizer.pkl','rb'))
-model=pickle.load(open('C:\\Users\\palla\\OneDrive\\Desktop\\Projects\\First\\SMS Spam Classifier\\model.pkl','rb'))
+tfidf=pickle.load(open('vectorizer.pkl','rb'))
+model=pickle.load(open('model.pkl','rb'))
 st.title('SMS Spam Classifier')
 sms_input=st.text_area('Enter the Message here')
 
