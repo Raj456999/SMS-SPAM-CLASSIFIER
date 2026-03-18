@@ -71,6 +71,8 @@ if st.button('Predict'):
     st.progress(int(confidence))
     st.write(f"Prediction :{prediction}")
     st.write(f"Confidence :{confidence:.2f}%")
+    st.write(spam_probability,ham_probability)
+    st.write('New model loaded')
     
 
 
