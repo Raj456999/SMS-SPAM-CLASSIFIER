@@ -10,6 +10,7 @@ ps=PorterStemmer()
 
 tfidf=pickle.load(open('vectorizer.pkl','rb'))
 model=pickle.load(open('model.pkl','rb'))
+print('lucky draw' in tfidf.get_feature_names_out())
 st.title('SMS Spam Classifier')
 sms_input=st.text_area('Enter the Message here')
 
@@ -51,9 +52,10 @@ def text_tranform(text):
     words = [w for w in words if w not in stopwords.words('english') and w not in string.punctuation]
     
     # stemming
-    words = [ps.stem(w) for w in words]
+    # words = [ps.stem(w) for w in words]
     
     return ' '.join(words)
+
 if st.button('Predict'):
     tranformed_sms=text_tranform(sms_input)
 
@@ -73,11 +75,30 @@ if st.button('Predict'):
     st.write(f"Confidence :{confidence:.2f}%")
     st.write(spam_probability,ham_probability)
     st.write('New model loaded')
-    
+
+if st.button('Predict'):
+    tranformed_sms=text_tranform(sms_input)
+
+    #Vectorization
+
+    vector_input=tfidf.transform([tranformed_sms])
+
+    #Prediction by model
+    # res=model.predict(vector_input)[0]
+    probability=model.predict_proba(vector_input)[0]
+    spam_probability=probability[1]
+    ham_probability=probability[0]
+    prediction='Spam' if spam_probability>ham_probability else 'Not Spam'
+    confidence=max(spam_probability,ham_probability)*100
+    st.progress(int(confidence))
+    st.write(f"Prediction :{prediction}")
+    st.write(f"Confidence :{confidence:.2f}%")
+
+
 
 
     
-    #Displaying results
+    # Displaying results
     # if res==1:
     #     st.header('Spam')
     # else:
