@@ -1,6 +1,5 @@
 from html.parser import piclose
 import nltk
-from networkx.algorithms.bipartite.generators import configuration_model
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import streamlit as st
