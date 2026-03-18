@@ -1,5 +1,6 @@
 from html.parser import piclose
 import nltk
+from networkx.algorithms.bipartite.generators import configuration_model
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import streamlit as st
@@ -8,9 +9,8 @@ import string
 nltk.download('stopwords')
 ps=PorterStemmer()
 
-tfidf=pickle.load(open('vectorizer.pkl','rb'))
-model=pickle.load(open('model.pkl','rb'))
-print('lucky draw' in tfidf.get_feature_names_out())
+tfidf=pickle.load(open('C:\\Users\\palla\\OneDrive\\Desktop\\Projects\\First\\SMS Spam Classifier\\vectorizer.pkl','rb'))
+model=pickle.load(open('C:\\Users\\palla\\OneDrive\\Desktop\\Projects\\First\\SMS Spam Classifier\\model.pkl','rb'))
 st.title('SMS Spam Classifier')
 sms_input=st.text_area('Enter the Message here')
 
@@ -58,17 +58,26 @@ def text_tranform(text):
 
 if st.button('Predict'):
     tranformed_sms=text_tranform(sms_input)
-
     #Vectorization
-
     vector_input=tfidf.transform([tranformed_sms])
-
     #Prediction by model
-    res=model.predict(vector_input)[0]
-    st.write('New model loaded')
+    prob=model.predict_proba(vector_input)[0]
+    spam_prob=prob[1]
+    ham_prob=prob[0]
 
-   # Displaying results
-    if res==1:
-        st.header('Spam')
+    threshold=0.4
+
+    prediction= 'Spam' if spam_prob>threshold else 'Not spam'
+    if spam_prob>threshold:
+        confidence=spam_prob*100
     else:
-        st.header('Not Spam')
+        confidence=ham_prob*100
+    st.progress(int(confidence))
+    # st.write(f"Prediction :{prediction}")
+    st.write(f"confidence :{confidence:.2f}%")
+    st.write(spam_prob,ham_prob)
+
+    if prediction=='Spam':
+        st.error(f"🚨 spam with confidence {confidence:.2f}%")
+    else:
+        st.error(f"😎 NOT spam with confidence {ham_prob*100:.2f}%")
