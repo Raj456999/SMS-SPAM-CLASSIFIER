@@ -67,7 +67,7 @@ if st.button('Predict'):
     res=model.predict(vector_input)[0]
     st.write('New model loaded')
 
-    Displaying results
+   # Displaying results
     if res==1:
         st.header('Spam')
     else:
