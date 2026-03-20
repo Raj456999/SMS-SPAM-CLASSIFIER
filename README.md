@@ -101,12 +101,13 @@ Model performance is highly dependent on dataset diversity.
 
 ## 📊 Example
 
-Input:Congratulations! You won a free car in lucky draw
-Output:
+# Input:
+Congratulations! You won a free car in lucky draw
+# Output:
 <img width="1143" height="640" alt="image" src="https://github.com/user-attachments/assets/48622454-6fbc-41a2-94cb-71eaaa96c86e" />
 
-Prediction: Spam
-Confidence: 72.24%
+- Prediction: Spam
+- Confidence: 72.24%
 
 
 ---
@@ -135,21 +136,17 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 📦 Requirements:
-streamlit
-scikit-learn
-pandas
-numpy
-nltk
+- streamlit
+- scikit-learn
+- pandas
+- numpy
+- nltk
 
-👨‍💻 Author
-
-Satteraju Palla
-Aspiring Data Scientist
+👨‍💻 Author 
+- Satteraju Palla (Aspiring Data scientist)
 
 
 ⭐ Support
 
 If you found this useful, give it a ⭐ on GitHub!
 
-
-“ran a notebook”
