@@ -77,6 +77,6 @@ if st.button('Predict'):
     st.write(spam_prob,ham_prob)
 
     if prediction=='Spam':
-        st.error(f"🚨 spam with confidence {confidence:.2f}%")
+        st.error(f"🚨 spam with probability {confidence:.2f}%")
     else:
-        st.success(f"😎 NOT spam with confidence {ham_prob*100:.2f}%")
+        st.success(f"😎 NOT spam with probability {ham_prob*100:.2f}%")
