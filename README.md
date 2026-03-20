@@ -103,8 +103,10 @@ Model performance is highly dependent on dataset diversity.
 
 Input:Congratulations! You won a free car in lucky draw
 Output:
+<img width="1143" height="640" alt="image" src="https://github.com/user-attachments/assets/48622454-6fbc-41a2-94cb-71eaaa96c86e" />
+
 Prediction: Spam
-Confidence: 92.34%
+Confidence: 72.24%
 
 
 ---
@@ -149,50 +151,5 @@ Aspiring Data Scientist
 
 If you found this useful, give it a ⭐ on GitHub!
 
-
----
-
-# 🔥 Industry-Level Tips (don’t skip)
-
-### 1. Add `.gitignore`
-pycache/
-*.pkl
-.env
-
-
----
-
-### 2. Add `requirements.txt`
-
-```text
-streamlit
-scikit-learn
-pandas
-numpy
-nltk
-```
-3. Keep code modular
-
-Move:
-
-preprocessing → src/preprocess.py
-
-training → src/train.py
-
-👉 Recruiters LOVE this
-
-4. Add demo screenshot
-
-Put inside /assets/demo.png
-Then in README:
-
-![Demo](assets/demo.png)
-🔥 Real talk
-
-This setup makes your repo look like:
-
-“someone who can build + structure + deploy projects”
-
-Not just:
 
 “ran a notebook”
